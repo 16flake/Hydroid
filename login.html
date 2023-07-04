@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form--class">
+      <div class="form-container">
+        <div class="text-container">
+          <h1>Welcome to Hydroid!</h1>
+          <p>Please login to continue</p>
+        </div>
+
+        <div class="invalid-login hidden">
+          <p>Either the username or password is incorrect.</p>
+        </div>
+
+        <div class="username-container">
+          <label for="username">Username</label>
+          <input
+            id="username-text-field"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            required
+          />
+        </div>
+
+        <div class="password-container">
+          <label for="password">Password</label>
+          <input
+            id="password-text-field"
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+        </div>
+
+        <button class="login-button" id="myButton">Login</button>
+        <label> <input type="checkbox" name="remember" /> Remember me </label>
+      </div>
+    </div>
+    <script>
+      const username = document.getElementById("username-text-field");
+      const password = document.getElementById("password-text-field");
+      const loginButton = document.querySelector(".login-button");
+      const invalid = document.querySelector(".invalid-login");
+
+      const validate = function () {
+        if (username.value === "admin" && password.value === "admin") {
+          window.location.replace("index.html");
+        } else {
+          invalid.classList.toggle("hidden");
+        }
+      };
+
+      loginButton.addEventListener("click", validate);
+      username.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("myButton").click();
+        }
+      });
+
+      password.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("myButton").click();
+        }
+      });
+    </script>
+  </body>
+</html>
