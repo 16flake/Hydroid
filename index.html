@@ -4,257 +4,75 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="https://img.icons8.com/color/256/lettuce.png">
-    <title>Hydroid</title>
-    <link rel="stylesheet" href="style.css" /> 
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="hideScrollBar prevent-select">
-    <!-- Top Panel -->
-    <header class="headerSection" id="header--id">
-      <div class="navbar">
-        <h2>Hydroid</h2>
-        <nav>
-          <ul class="navClass menuList toggleHeight">
-            <li>
-              <a class="class--home hidden">Home</a>
-            </li>
-  
-            <li>
-              <a class="nav--about" href="#about-Us">About Us</a>
-            </li>
-  
-            <li> 
-              <a class="nav--researcher" href="#proponents">Researchers</a>
-            </li>
+  <body>
+    <div class="form--class">
+      <div class="form-container">
+        <div class="text-container">
+          <h1>Welcome to Hydroid!</h1>
+          <p>Please login to continue</p>
+        </div>
 
-            <li>
-              <a class="nav--contact">Logout</a>
-            </li>
-          </ul>
-        </nav>
-        <img class="navicon navicon--rotate" src="https://img.icons8.com/ios-filled/100/FFFFFF/menu--v1.png" width="30" height="30"/>
+        <div class="invalid-login hidden">
+          <p>Either the username or password is incorrect.</p>
+        </div>
+
+        <div class="username-container">
+          <label for="username">Username</label>
+          <input
+            id="username-text-field"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            required
+          />
+        </div>
+
+        <div class="password-container">
+          <label for="password">Password</label>
+          <input
+            id="password-text-field"
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+        </div>
+
+        <button class="login-button" id="myButton">Login</button>
+        <label> <input type="checkbox" name="remember" /> Remember me </label>
       </div>
-    </header>
+    </div>
+    <script>
+      const username = document.getElementById("username-text-field");
+      const password = document.getElementById("password-text-field");
+      const loginButton = document.querySelector(".login-button");
+      const invalid = document.querySelector(".invalid-login");
 
-    <main>
-      <section class="welcome">
-        <h2><span class="h2Class">Hydroid</span></h2>
-        <p>
-          An IoT Based <span>Hydroponic</span> Nutrient Film Technique for
-          Lettuce Farming.
-        </p>
-        <a href="#mainContainer--id" class="contactButton">Get Started</a>
+      const validate = function () {
+        if (username.value === "admin" && password.value === "admin") {
+          window.location.replace("index.html");
+        } else {
+          invalid.classList.toggle("hidden");
+        }
+      };
 
-      </section>
+      loginButton.addEventListener("click", validate);
+      username.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("myButton").click();
+        }
+      });
 
-      <div class="weeklyGuide hidden">
-        <button class="closeGuide buttons">&times;</button>
-        <div class="note">
-          <h2>This section is still under development.</h2>
-          <h2>It will be available soon!</h2>
-        </div>
-<!--         <h2>See what your lettuce looks like for each week</h2>
-        <div class="week1">
-          <h2>Week 1</h2>
-        </div>
-
-        <div class="week2">
-          <h2>Week 2</h2>
-        </div>
-
-        <div class="week3">
-          <h2>Week 3</h2>
-        </div>
-
-        <div class="week4">
-          <h2>Week 4</h2>
-        </div>
-
-        <div class="week5">
-          <h2>Week 5</h2>
-        </div> -->
-      </div>
-
-      <div class="dataGuide hidden">
-        <button class="closeData buttons">&times;</button>
-        <div class="note">
-          <h2>This section is still under development.</h2>
-          <h2>It will be available soon!</h2>
-        </div>
-      </div>
-
-<!-- ==================== SWITCHE CODE STARTS HERE ==================== -->
-      <div class="monitoring hidden">
-        <div class="layout--grid">
-          <button class="closeMonitoring buttons">&times;</button>
-          <div class="control--1 layout--style">
-            <h2>Control</h2>
-            <div class="switchContainer">
-              <div>
-                <h3>Pump 1</h3>
-                <button class="pump--1 buttonSwitch--style">
-                  <img id="pump1--state" class="imgSwitch--style" src="https://raw.githubusercontent.com/lauroro/esp8266-relay/d89f42412d6603db13ab290bce6dadf24131c116/sketch/data/off.svg?fbclid=IwAR1_v2_gcfNgXtdtDBY0BfxqYYDqOKGiPkXWib5akY7MTpRwLdyfAvcL1_4" alt="Switch" >
-                </button>
-              </div>
-
-              <div>
-                <h3>Light</h3>
-                <button class="light--1 buttonSwitch--style">
-                  <img id="light1--state" class="imgSwitch--style" src="https://raw.githubusercontent.com/lauroro/esp8266-relay/d89f42412d6603db13ab290bce6dadf24131c116/sketch/data/off.svg?fbclid=IwAR1_v2_gcfNgXtdtDBY0BfxqYYDqOKGiPkXWib5akY7MTpRwLdyfAvcL1_4" alt="Switch" >
-                </button>
-              </div>
-
-              <div>
-                <h3>Pump 2</h3>
-                <button class="pump--2 buttonSwitch--style">
-                  <img id="pump2--state" class="imgSwitch--style" src="https://raw.githubusercontent.com/lauroro/esp8266-relay/d89f42412d6603db13ab290bce6dadf24131c116/sketch/data/off.svg?fbclid=IwAR1_v2_gcfNgXtdtDBY0BfxqYYDqOKGiPkXWib5akY7MTpRwLdyfAvcL1_4" alt="Switch" >
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="monitor--1 layout--style">
-            <h2>Monitor</h2>
-            <div class="icons--container sub--grid">
-              <div class="pH--container sub--grid">
-                <h3 class="variables--tag">pH level</h3>
-                <img class="pH--icon variables--img" src="https://i.ibb.co/YjtjPCG/pH-icon.png" alt="pH level">
-                <h3 class="variables--value">39%</h3>
-              </div>
-              <div class="ec--container sub--grid">
-                <h3 class="variables--tag">EC level</h3>
-                <img class="ec--icon variables--img" src="https://i.ibb.co/WB16SMX/ec-icon.png" alt="electric conductivity">
-                <h3 class="variables--value">47%</h3>
-              </div>
-              <div class="co2--container sub--grid">
-                <h3 class="variables--tag">CO2 level</h3>
-                <img class="co2--icon variables--img" src="https://i.ibb.co/T2R748C/co2-icon.png" alt="CO2">
-                <h3 class="variables--value">31%</h3>
-              </div>
-              <div class="humid--container sub--grid">
-                <h3 class="variables--tag">Humidity level</h3>
-                <img class="humid--icon variables--img" src="https://i.ibb.co/vBwgz7N/humidity-icon.png" alt="humidity">
-                <h3 class="variables--value">22%</h3>
-              </div>
-              <div class="temperature--container sub--grid">
-                <h3 class="variables--tag">Temperature</h3>
-                <img class="temperature--icon variables--img" src="https://i.ibb.co/vDq7SNk/temperature-icon.png" alt="temperature">
-                <h3 class="variables--value">36˚C</h3>
-              </div>
-              <div class="power--container sub--grid">
-                <h3 class="variables--tag">Power level</h3>
-                <img class="power--icon variables--img" src="https://i.ibb.co/5BQYhFm/power-icon.png" alt="power level">
-                <h3 class="variables--value">72%</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-- ==================== SWITCHE CODE ENDS HERE ==================== -->
-
-      <div class="overlay hidden"></div>
-
-      <section class="mainContainer" id="mainContainer--id">
-        <section class="mainContent">
-          <div class="feature grid">
-            <div class="guide sub--grid">
-            <img class="guide--img" src="https://www.iconpacks.net/icons/2/free-plant-icon-1573-thumb.png" alt="Lettuce" />
-            <p class="guide--text">One of the vegetables that is most frequently grown hydroponically is lettuce (Lactuca sativa). <span class="cutPhrase">Plants can be grown hydroponically without using soil. Plants can be maintained by an inert substrate or grown only in a nutrient solution (liquid culture) (aggregate culture).</span>
-            <a class="guideButton button--style">Guide </a>
-            </p>
-          </div>
-
-          <div class="monitor sub--grid">
-            <p class="monitor--text">The water in a hydroponic system must be nutrient enhanced in order for plants grown hydroponically to receive the nutrients they require. <span class="cutPhrase">Water that has been enhanced with nutrients needs to be regularly watched to make sure that the levels are not too high or too low, which would prevent growth. </span>
-              <a class="monitorButton button--style">Monitor</a>
-            </p>
-            <img class="monitor--img" src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png" alt="Monitor" />
-          </div>
-
-          <div class="data sub--grid">
-            <p class="data--text">Here, you can see all other data aside from what you can see in the Monitoring Section. <span class="cutPhrase">This section will allow you to see all other data that is also important for growing lettuce. Checking all the data from time to time is a key for producing high quality and reliable lettuce. </span>
-              <a class="dataButton button--style">Data</a>
-            </p>
-            <img class="data--img" src="https://cdn-icons-png.flaticon.com/512/1925/1925168.png?fbclid=IwAR2qbpNf--auFdAk4amp_LI9zGLFr6A8RIHVVNaG_WekRuWL5oJIjChL5Xo" alt="Monitor" />
-          </div>
-        </section>
-
-        <section class="otherContent">
-          <div id="about-Us" class="aboutUs">
-            <h2>About Us</h2>
-            <p>
-              Hydroid is an automated version of hydrophonics lettuce farming.
-              Through the use of several electronic components such as sensors,
-              Hydroid allows the user to monitor their hydrophonic system's pH
-              level, water level, nutrients level, humidity, and temperature.
-              <br />
-              <br />
-              Through this innovation, hydrophonic lettuce farming is made more
-              easy and provides more quality to the crops.
-            </p>
-          </div>
-
-          <div id="proponents" class="researchers">
-            <h2>Researchers</h2>
-            <div class="layout--container">
-            <div class="earl sub--grid">
-              <img class="earl--picture" src="https://i.ibb.co/0nQV0Qz/341955348-1243494972941872-8803181663155975112-n.png" alt="Earl John">
-              <div class="earl--content">
-                <h3 class="earl--h3"><span class="span--earl"></span> Earl John Parducho</h3>
-                <p class="earl--p">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam facilis architecto ex sequi quis saepe eius deserunt provident dolore alias, similique, at optio praesentium enim possimus laudantium. Laboriosam, explicabo deleniti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam commodi laboriosam labore laborum nesciunt veniam voluptate, eveniet ipsum unde omnis perspiciatis incidunt, exercitationem quo doloribus, necessitatibus tempore aliquam facilis velit.
-                </p>
-                <div class="iconContainer">
-                  <a href="https://www.facebook.com/ej.parducho" target="_blank"><img src="https://img.icons8.com/color/48/null/facebook.png" alt="Facebook"></a>
-                  <a href="https://www.instagram.com/ejparducho_/" target="_blank"><img src="https://img.icons8.com/fluency/48/null/instagram-new.png" alt="Instagram"></a>
-                  <!-- <a href=""><img src="https://img.icons8.com/fluency/48/null/twitter.png" alt="Twitter"></a> -->
-                  <a href="https://www.linkedin.com/in/earl-john-parducho-a06214248/" target="_blank"><img src="https://img.icons8.com/fluency/48/null/linkedin.png" alt="LinkedIn"></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="jerone sub--grid">
-              <img class="jerone--picture" src="https://i.ibb.co/QPND1Bw/IMG-20200822-121018.jpg" alt="Jerone Rick">
-              <div class="jerone--content">
-                <h3 class="jerone--h3"><span class="span--jerone"></span> Jerone Rick Flake</h3>
-                <p class="jerone--p">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti consequatur non libero officiis cupiditate neque aliquam deleniti. Eius et, totam vel recusandae deleniti nostrum ipsum? Facilis esse molestias eum a!
-                  Assumenda id hic quidem ipsum aliquid porro eum, ipsa blanditiis repellat officia, sunt placeat totam! Fugit possimus eum numquam eaque asperiores a odio provident, deleniti libero dolorum fuga autem reiciendis.
-                </p>
-                <div class="iconContainer">
-                  <a href="https://www.facebook.com/16flake" target="_blank"><img src="https://img.icons8.com/color/48/null/facebook.png" alt="Facebook"></a>
-                  <a href="https://www.instagram.com/jjeroneee/" target="_blank"><img src="https://img.icons8.com/fluency/48/null/instagram-new.png" alt="Instagram"></a>
-<!--                   <a href=""><img src="https://img.icons8.com/fluency/48/null/twitter.png" alt="Twitter"></a> -->
-                  <a href="https://www.linkedin.com/in/jerone-rick-flake-5276431b8/" target="_blank"><img src="https://img.icons8.com/fluency/48/null/linkedin.png" alt="LinkedIn"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </section>
-      </section>
-
-      <p class="arrow--container">
-        <a href="#header--id"><img class="arrowIcon hideArrowUp"  width="40" height="40" src="https://img.icons8.com/fluency-systems-regular/40/000000/double-up.png" alt="double-up"/></a>
-      </p>
-
-    </main>
-
-    <footer id="footer--id">
-      <div class="credit">
-        <h2>Hydroid</h2>
-        <p>This system was made to make your lettuce farming using hydroponics easier.</p>
-        <h4>Developed by Earl John O. Parducho and Jerone Rick Flake</h4>
-        
-        <p class="back">
-          <a href="#header--id" >Back to Top</a>
-        </p>
-
-        <h3>Alright Reserve 2023</h3>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
+      password.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("myButton").click();
+        }
+      });
+    </script>
   </body>
 </html>
