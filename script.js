@@ -198,5 +198,5 @@ footerSectionObserver.observe(footerSection);
 
 //Logout Button
 navContact.addEventListener("click", function () {
-  window.location.replace("index.html");
+  window.location.replace("login.html");
 });
